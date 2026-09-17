@@ -33,9 +33,9 @@ public class TransactionServlet extends HttpServlet {
 
         // 处理分页参数
         int page = parseIntOrDefault(request.getParameter("page"), 1);
-        int pageSize = parseIntOrDefault(request.getParameter("pageSize"), 10);
+        int pageSize = parseIntOrDefault(request.getParameter("pageSize"), 5);
         if (page < 1) page = 1;
-        if (pageSize < 1) pageSize = 10;
+        if (pageSize < 1) pageSize = 5;
 
         TransactionDao dao = new TransactionDao();
         int totalRecords = dao.getTransactionCount(name, type, dateFrom, dateTo, minAmount, maxAmount);

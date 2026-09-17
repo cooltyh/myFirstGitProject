@@ -61,7 +61,7 @@ class TransactionServletTest {
             new TransactionServlet().doGet(request, response);
 
             TransactionDao dao = mocked.constructed().get(0);
-            verify(dao).getTransaction(any(), any(), any(), any(), any(), any(), eq(0), eq(10));
+            verify(dao).getTransaction(any(), any(), any(), any(), any(), any(), eq(0), eq(5));
 
             verify(request).setAttribute("currentPage", 1);
             verify(request).setAttribute("totalPages", 0);
@@ -80,11 +80,11 @@ class TransactionServletTest {
             new TransactionServlet().doGet(request, response);
 
             TransactionDao dao = mocked.constructed().get(0);
-            // totalPages = 3，page 被钳制到 3，offset = (3-1)*10 = 20
-            verify(dao).getTransaction(any(), any(), any(), any(), any(), any(), eq(20), eq(10));
+            // totalPages = 5，page 被钳制到 5，offset = (5-1)*5 = 20
+            verify(dao).getTransaction(any(), any(), any(), any(), any(), any(), eq(20), eq(5));
 
-            verify(request).setAttribute("currentPage", 3);
-            verify(request).setAttribute("totalPages", 3);
+            verify(request).setAttribute("currentPage", 5);
+            verify(request).setAttribute("totalPages", 5);
         }
     }
 }
